@@ -4,7 +4,7 @@ public class MinWindowSubstring {
     public static String minWindow(String s, String t) {
         if(t.length()>s.length())
             return "";
-        int freq[]=new int[128];
+        int[] freq =new int[128];
         for(char c:t.toCharArray()){
             freq[c]++;
         }
