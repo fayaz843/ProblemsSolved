@@ -9,7 +9,7 @@ public class streamsUsingObject {
         Employee e1=new Employee(21,"fayaz",25,50000,"male","eng");
         Employee e2=new Employee(77,"shriya",21,30000,"female","acc");
         Employee e3=new Employee(12,"ahamed",23,70000,"male","eng");
-        Employee e4=new Employee(44,"king",22,60000,"female","hr");
+        Employee e4=new Employee(44,"king",22,70000,"female","hr");
         List<Employee> empList=new ArrayList<>();
         Collections.addAll(empList,e1,e2,e3,e4);
        /* empList.add(e1);
@@ -55,5 +55,9 @@ public class streamsUsingObject {
           //second-highest salary
           Optional<Employee> secondHighSalary=empList.stream().sorted(Comparator.comparing(Employee::getSalary,Comparator.reverseOrder())).skip(1).findFirst();
           System.out.println(secondHighSalary.get());
+          //get all id of employee based on salary
+          // need to use mapping
+          Map<Float, List<Integer>> salaryMap = empList.stream().collect(Collectors.groupingBy(Employee::getSalary,Collectors.mapping(Employee::getEmpId,Collectors.toList())));
+          salaryMap.forEach((a,b)->System.out.println(a+" "+b));
     }
 }
